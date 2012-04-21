@@ -9,19 +9,20 @@
 #pragma pack(1) //Do NOT byte-align. Please.
 
 typedef struct {
-    unsigned short version:3;   //Version is always 0, according to CCSDS 203.0-B-2
-    unsigned short type:1;      //Type is 1 for Telecommand packets, 0 means its a Telemetry data packet.
+    unsigned char version:3;   //Version is always 0, according to CCSDS 203.0-B-2
+    unsigned char type:1;      //Type is 1 for Telecommand packets, 0 means its a Telemetry data packet.
     unsigned short apid:11;     //Application Process ID, identifies the receipient on the spacecraft to receive and handle this packet.
     //Sequence control
-    unsigned short seq_flags:2; //Determine if this packet belongs to a sequence and if its the first, last or somewhere in between. (see PACKET_SEQ_*)_
-    unsigned int seq_count:14;  //Could be either Sequence Count or Packet name
+    unsigned char seq_flags:2; //Determine if this packet belongs to a sequence and if its the first, last or somewhere in between. (see PACKET_SEQ_*)_
+    unsigned short seq_count:14;  //Could be either Sequence Count or Packet name
     
-    unsigned int length;        //Length of the packet
+    unsigned short length;        //Length of the packet in bytes, excluding the primary header
 } qb_packet_header;
 
 typedef struct {
-    qb_packet_header primary_header;
-    qb_
+    qb_packet_header *primary_header;
+    qb_packet_header *secondary_header; //Optional - might be NULL
+    void *data;                         //The actual payload of the packet
 } qb_packet;
 
 #endif
