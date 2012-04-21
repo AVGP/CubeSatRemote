@@ -55,14 +55,13 @@ int main(int argc, char **argv) {
     p->primary_header = malloc(sizeof(qb_tc_packet_header));
     p->primary_header->version = 0;
     p->primary_header->type = 1;
-    p->primary_header->sh_present = 1;
+    p->primary_header->sh_present = 0;
     p->primary_header->apid = 2047; //all 11 bit are 1.    
     p->primary_header->seq_flags = PACKET_SEQ_STANDALONE;
     p->primary_header->seq_count = 16383;
     p->primary_header->length = 13;
     p->data = "Hello world!"; 
 
-    p->secondary_header = "TEST";
 
     dumpPacket(p);
 
