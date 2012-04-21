@@ -1,0 +1,25 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/bin/npm', 'install', '-d' ]
+info using npm@1.1.16
+info using node@v0.6.15
+verbose /usr/bin/node node symlink
+verbose config file /root/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/lib/nodejs/npm/npmrc
+ERR! Couldn't read dependencies.
+ERR! Error: ENOENT, open '/home/frank/package.json'
+ERR! You may report this log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Linux 3.0.0-17-generic
+ERR! command "node" "/usr/bin/npm" "install" "-d"
+ERR! cwd /home/frank/wrk/personal/spaceapps/CubeSat
+ERR! node -v v0.6.15
+ERR! npm -v 1.1.16
+ERR! path /home/frank/package.json
+ERR! code ENOENT
+ERR! message ENOENT, open '/home/frank/package.json'
+ERR! errno {}
+verbose exit [ 1, true ]
