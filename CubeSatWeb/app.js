@@ -38,12 +38,13 @@ var client = mysql.createClient({
 });
 
 
-// Routes
+// Routes - say hello
 app.get('/', routes.index);
 
+// Get latest packages - limit set to 100
 app.get('/latestpackages', function(req, res){
     client.query(
-        'select * from packet ORDER BY timestamp DESC LIMIT 10',
+        'select * from packet ORDER BY timestamp DESC LIMIT 100',
         function(err, results, fields){
             if(err){
                 console.log('an error occurred' + err);
@@ -53,7 +54,8 @@ app.get('/latestpackages', function(req, res){
     );
 });
 
-app.get('/package/:id', function(req, res){
+// Get package by id
+app.get('/packagebyid/:id', function(req, res){
     client.query(
         'select * from packet where id = ?',
         [req.params.id],
@@ -66,9 +68,20 @@ app.get('/package/:id', function(req, res){
         );
 });
 
-
+app.get('/framebyid/:id', function(req, res){
+    client.query(
+        'select * from packet where frame_id = ? ORDER BY TIMESTAMP DESC',
+        [req.params.id],
+        function(err, results, fields){
+            if(err){
+                console.log('an error occurred' + err);
+            }
+            res.send(results);
+        }
+    );
+});
 
 
 app.listen(3000, function(){
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+  console.log("CubeSatDataGateway listening on port %d in %s mode", app.address().port, app.settings.env);
 });
