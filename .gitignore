@@ -1,5 +1,6 @@
 *.swp
 *.o
+db.conf
 
 node_modules
 
