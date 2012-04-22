@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "packet.h"
+#include "lib/packet.h"
+#include "lib/qb_tc_data_routing.h"
 
 void dumpPacket(qb_tc_packet *packet) {
     printf("> Header\n");
@@ -62,6 +63,22 @@ int main(int argc, char **argv) {
     p->primary_header->length = 13;
     p->data = "Hello world!"; 
 
+    qb_tc_frame *f = malloc(sizeof(qb_tc_frame));
+    f->header = malloc(sizeof(qb_tc_frame_header));
+    f->header->version = 0;
+    f->header->bypass_flag = 0;
+    f->header->ctrl_command_flag = 0;
+    f->header->spare = 0;
+    f->header->spacecraft_id = 1;
+    f->header->vc_id=0;
+    f->header->length = sizeof(p);
+    f->header->seq = 1;
+    f->data = p;
+
+    unsigned short *spacecraft_ids = malloc(sizeof(short)*2);
+    spacecraft_ids[0] = 1;
+    spacecraft_ids[1] = 2;
+    printf("Is frame valid? -> (%d)\n", qb_validateFrame(f, &spacecraft_ids, 2));
 
     dumpPacket(p);
 
