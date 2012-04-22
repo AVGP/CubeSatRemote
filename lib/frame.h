@@ -1,6 +1,8 @@
 #ifndef _FRAME_H
 #define _FRAME_H
 
+#include "segment.h"
+
 #pragma pack(0)
 
 typedef struct {
@@ -18,7 +20,7 @@ typedef struct {
 
 typedef struct {
     qb_tc_frame_header *header;
-    void *data;
+    qb_tc_segment *data;
     unsigned short checksum;
 } qb_tc_frame;
 
