@@ -12,10 +12,13 @@
             }
         }
         if(valid_scid != 1) return TC_FRAME_VALIDATION_ERR_SCID;
-
-        if(sizeof(*frame->data) != frame->header->length) 
-            return TC_FRAME_VALIDATION_ERR_LEN;
         
+        //This is still buggy. And by buggy I mean: horribly.
+        /*
+        if(sizeof(*(frame->data)) != frame->header->length) 
+            return TC_FRAME_VALIDATION_ERR_LEN;
+        */
+
         if(frame->header->ctrl_command_flag == 1) {
             unsigned char len = TC_COMMAND_LEN;
             unsigned char mask = 0;
