@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "lib/packet.h"
 #include "lib/qb_tc_data_routing.h"
+#include "lib/util.h"
 #include "db/db.h"
-#include "simulator/simulator.h"
 
 int main(int argc, char **argv) {
     if(argc < 3) {
