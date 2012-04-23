@@ -3,6 +3,7 @@
 db.conf
 
 node_modules
+target
 
 *.iml
 .idea
