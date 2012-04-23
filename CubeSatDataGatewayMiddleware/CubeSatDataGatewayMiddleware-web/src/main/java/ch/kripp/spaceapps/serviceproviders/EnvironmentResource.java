@@ -1,19 +1,11 @@
 package ch.kripp.spaceapps.serviceproviders;
 
-import ch.kripp.spaceapps.domain.env.EnvironmentInfo;
-import ch.kripp.spaceapps.env.EnvironmentServiceBean;
+import ch.kripp.spaceapps.domain.Environment.EnvironmentInfo;
+import ch.kripp.spaceapps.serviceBeans.EnvironmentServiceBean;
 import javax.annotation.ManagedBean;
-import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -49,7 +41,7 @@ public class EnvironmentResource {
     @Produces("application/json")
     public EnvironmentInfo getJson() {
         //TODO return proper representation object
-        return this.environmentService.getEnvironmentIdentifier();
+        return this.environmentService.getEnvironmentInfo();
     }
 
     /**
