@@ -14,8 +14,8 @@ typedef struct {
 } qb_tc_segment_header;
 
 typedef struct {
-    qb_tc_segment_header *head;
-    void *data;
+    qb_tc_segment_header *head; 
+    void *data;                 // This can either be a complete qb_tc_packet or a part of it (depending on seq_flags in the head)
 } qb_tc_segment;
 
 #endif
