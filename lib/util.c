@@ -1,5 +1,4 @@
-#include "simulator.h"
-
+#include "util.h"
 
 unsigned int mkSegments(qb_tc_packet **packets, unsigned int num_packets, qb_tc_segment **segments) {
     return 0;
