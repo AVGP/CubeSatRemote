@@ -1,5 +1,19 @@
 #include "util.h"
 
+qb_tc_packet *qb_data_to_packet(unsigned short seq_number, unsigned short apid, void *data, unsigned short data_len) {
+    qb_tc_packet *p = malloc(sizeof(qb_tc_packet) + data_len);
+    p->primary_header->version      = 0;
+    p->primary_header->type         = 1;
+    p->primary_header->sh_present   = 0;
+    p->primary_header->apid         = apid;
+    p->primary_header->seq_flags    = PACKET_SEQ_STANDALONE;
+    p->primary_header->seq_count    = seq_number;
+    p->primary_header->length       = data_len;
+    p->data = data;
+
+    return p;
+}
+
 unsigned int mkSegments(qb_tc_packet **packets, unsigned int num_packets, qb_tc_segment **segments) {
     return 0;
 }

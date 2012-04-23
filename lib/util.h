@@ -9,6 +9,16 @@
 #include "../lib/frame.h"
 
 /**
+* Creates a qb_tc_packet from any given payload data. It should be a multiple of 8 bits long.
+* @param seq_number The packet sequence number, used to identify a packet in a stream of packets. NOTE: Maximum length 14 bit!
+* @param apid The application ID to be assigned to the packet. This allows to transfer different kind of data via packets. NOTE: Maximum length 11 bit!
+* @param data Pointer to the payload data for the packet
+* @param data_len Length of data in byte. The length of a packet shall not exceed 65536 byte!
+* @return Returns a pointer to an internally allocated qb_tc_packet structure.
+*/
+qb_tc_packet *qb_data_to_packet(unsigned short seq_number, unsigned short apid, void *data, unsigned short data_len);
+
+/**
 * Creates TC-Segment(s) from a given number of qb_tc_packet structures
 * @param[in] packets A pointer to an array of qb_tc_packets to transform into qb_tc_segments
 * @param[in] num_packets The numer of packets in the packets array
