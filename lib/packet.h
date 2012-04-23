@@ -8,7 +8,7 @@
 
 #define PACKET_SEC_HEADER_PRESENT_FLAG 0x10 //Mask to check for presence of a secondary header
 
-#pragma pack(no-pack) //Do NOT byte-align. Please.
+#pragma pack(0) //Do NOT byte-align. Please.
 
 typedef struct {
     unsigned char version:3;    //Version is always 0, according to CCSDS 203.0-B-2
