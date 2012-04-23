@@ -13,7 +13,7 @@
         }
         if(valid_scid != 1) return TC_FRAME_VALIDATION_ERR_SCID;
         
-        //This is still buggy. And by buggy I mean: horribly.
+        //This is still buggy. And by buggy I mean: It doesn't work.
         /*
         if(sizeof(*(frame->data)) != frame->header->length) 
             return TC_FRAME_VALIDATION_ERR_LEN;
