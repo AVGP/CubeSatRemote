@@ -4,10 +4,21 @@ unsigned int mkSegments(qb_tc_packet **packets, unsigned int num_packets, qb_tc_
     return 0;
 }
 
-qb_tc_frame *mkFrame(qb_tc_segment *segment) {
-    return;
-}
+qb_tc_frame *mkFrame(unsigned short spacecraft_id, qb_tc_segment *segment) {
+    qb_tc_frame *result = malloc(sizeof(qb_tc_frame));
+    result->header = malloc(sizeof(qb_tc_frame_header));
+    result->header->version             = 0;
+    result->header->bypass_flag         = 0;
+    result->header->ctrl_command_flag   = 0;
+    result->header->spare               = 0;
+    result->header->spacecraft_id       = spacecraft_id;
+    result->header->vc_id               = 0; //We don't support that now
+    result->header->length              = sizeof(*segment);
+    result->header->seq                 = 1; //We don't really use that here.
+    result->data                        = segment;
 
+    return result;
+}
 
 void dumpPacket(qb_tc_packet *packet) {
     printf("> Header\n");

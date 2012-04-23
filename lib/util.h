@@ -2,6 +2,7 @@
 #define _SIMULATOR_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "../lib/const.h"
 #include "../lib/packet.h"
 #include "../lib/segment.h"
@@ -18,10 +19,11 @@ unsigned int mkSegments(qb_tc_packet **packets, unsigned int num_packets, qb_tc_
 
 /*
 * Transforms a TC-Segment into a TC-Frame.
+* @param spacecraft_id Spacecraft ID of the sender - NOTE: You can only use the lower 10 bits.
 * @param segment A pointer to the qb_tc_segment that is to be turned into a frame
 * @return Returns a pointer to the allocated qb_tc_frame structure
 */
-qb_tc_frame *mkFrame(qb_tc_segment *segment);
+qb_tc_frame *mkFrame(unsigned short spacecraft_id, qb_tc_segment *segment);
 
 /**
 * Dumps a qb_tc_packet to stdout as human-readable information
